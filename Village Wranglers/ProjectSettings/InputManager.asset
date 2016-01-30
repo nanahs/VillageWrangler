@@ -70,11 +70,27 @@ InputManager:
     axis: 0
     joyNum: 1
   - serializedVersion: 3
-    m_Name: FindController
+    m_Name: P1_Horizontal
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: joystick button 18
+    negativeButton: a
+    positiveButton: d
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 3
+    dead: 0.001
+    sensitivity: 3
+    snap: 1
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 1
+  - serializedVersion: 3
+    m_Name: P1_Vertical
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: w
+    positiveButton: s
     altNegativeButton: 
     altPositiveButton: 
     gravity: 3

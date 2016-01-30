@@ -21,12 +21,13 @@ public class PlayerController : MonoBehaviour {
 
 	public float TESTVAR;
 
+    public GameObject m_AnimationManger;
 	// Use this for initialization
 	void Start () {
 
 		rb = this.GetComponent<Rigidbody>();
 		//Debug.Log(Input.GetJoystickNames()[0]);
-	
+        m_AnimationManger = GameObject.Find("AnimationManager");
 	}
 	
 	// Update is called once per frame
@@ -50,10 +51,19 @@ public class PlayerController : MonoBehaviour {
 			xMov = xTemp * Time.deltaTime * moveSpeed;
 		}
 
+        
 		if(yMov > .1 || yMov < .1){
 			yMov = yTemp * Time.deltaTime * moveSpeed;
 		}
 
+        if (xTemp >0)
+        {
+            m_AnimationManger.transform.localEulerAngles = new Vector3(0, 180, 0); 
+        }
+        else if(xTemp < 0)
+        {
+            m_AnimationManger.transform.localEulerAngles = new Vector3(0, 0, 0); 
+        }
 		//cc.Move(new Vector3(xMov, 0, -yMov));
 		rb.velocity = new Vector3(xMov, 0, -yMov);
 		//rb.MovePosition(new Vector3(xMov, 0, -yMov));
