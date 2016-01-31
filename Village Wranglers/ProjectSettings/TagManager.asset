@@ -5,6 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - Villager
+  - Ground
+  - VillageSpawner
+  - playerOneSpawn
+  - playerTwoSpawn
+  - speed
+  - strength
+  - dizzy
+  - sHold1
+  - sHold2
   layers:
   - Default
   - TransparentFX
@@ -14,9 +23,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Ground
+  - Entities
+  - PowerUp
   - 
   - 
   - 
