@@ -15,6 +15,10 @@ public class ButtonFunctions : MonoBehaviour
 	}
 	public void ToGame()
 	{
+		Application.LoadLevel(6);
+	}
+	public void Replay()
+	{
 		Application.LoadLevel(4);
 	}
 	public void ToCredits()

@@ -17,3 +17,5 @@ EditorBuildSettings:
     path: Assets/Scenes/trappin.unity
   - enabled: 1
     path: Assets/Scenes/DrawScreen.unity
+  - enabled: 1
+    path: Assets/Scenes/HowToPlay.unity
