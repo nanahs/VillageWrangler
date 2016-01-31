@@ -39,9 +39,9 @@ public class TrapBehaviors : MonoBehaviour
 			player.transform.position.Set(trap.transform.position.x, trap.transform.position.y, trap.transform.position.z);
 	}
 
-	void OnTriggerEnter(Collision col)
+	void OnTriggerEnter(Collider col)
 	{
-		if (col.gameObject.tag == "Player")
+		if (col.tag == "Player")
 		{
 			player = col.gameObject;
 			if (trap.GetComponent<TrapTypes>() == TrapTypes.SpikeTrap)

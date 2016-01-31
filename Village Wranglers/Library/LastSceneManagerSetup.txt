@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Keith's Test Scene.unity
+- path: Assets/Scenes/DONOTUSE.unity
   isLoaded: 1
   isActive: 1

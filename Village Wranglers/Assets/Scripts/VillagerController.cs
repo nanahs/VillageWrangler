@@ -4,7 +4,7 @@ using System.Collections;
 public class VillagerController : MonoBehaviour {
 
 	public float walkSpeed = 5f;
-	Vector3 walkDirection;
+	public Vector3 walkDirection;
 
 	Rigidbody rb;
 
@@ -19,7 +19,7 @@ public class VillagerController : MonoBehaviour {
 
 		rb = GetComponent<Rigidbody>();
 		villageSpawner = GameObject.FindGameObjectWithTag("VillageSpawner");
-		//InvokeRepeating("changeDirection", 0f, 5f);
+		InvokeRepeating("changeDirection", 0f, 5f);
 	
 	}
 	
@@ -62,6 +62,7 @@ public class VillagerController : MonoBehaviour {
 	private void hitGround(){
 		
 		InvokeRepeating("changeDirection", 3f, 5f);
+		rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
 		canMove = true;
 
 	}
@@ -71,6 +72,7 @@ public class VillagerController : MonoBehaviour {
 		isHeld = held;
 		if(isHeld){
 			canMove = false;
+			rb.constraints = RigidbodyConstraints.FreezeRotation;
 		}
 
 	}

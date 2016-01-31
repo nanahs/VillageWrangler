@@ -20,8 +20,6 @@ public class PlayerController : MonoBehaviour {
 	public bool isDizzy = false;
 
 
-
-
 	GameObject heldVillager;
 	VillagerController heldVillagerScript;
 	Rigidbody heldVillagerRigid;
@@ -44,17 +42,11 @@ public class PlayerController : MonoBehaviour {
 	private string randomVert = "";
 	private int randomDirection = 1;
 
-    public GameObject m_AnimationManger;
 	// Use this for initialization
 	void Start () {
 
 		rb = this.GetComponent<Rigidbody>();
-<<<<<<< Updated upstream
-		//Debug.Log(Input.GetJoystickNames()[0]);
-        m_AnimationManger = GameObject.Find("AnimationManager");
-=======
-	
->>>>>>> Stashed changes
+
 	}
 	
 	// Update is called once per frame
@@ -93,7 +85,6 @@ public class PlayerController : MonoBehaviour {
 				yTemp = Input.GetAxis("P2_Vertical") * randomDirection;
 			}
 
-			//randomMovementControls();
 		}
 
 
@@ -107,18 +98,6 @@ public class PlayerController : MonoBehaviour {
 			yMov = yTemp * Time.deltaTime * moveSpeed;
 		}
 
-<<<<<<< Updated upstream
-        if (xTemp >0)
-        {
-            m_AnimationManger.transform.localEulerAngles = new Vector3(0, 180, 0); 
-        }
-        else if(xTemp < 0)
-        {
-            m_AnimationManger.transform.localEulerAngles = new Vector3(0, 0, 0); 
-        }
-		//cc.Move(new Vector3(xMov, 0, -yMov));
-=======
->>>>>>> Stashed changes
 		rb.velocity = new Vector3(xMov, 0, -yMov);
 
 
