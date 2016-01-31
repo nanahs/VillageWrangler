@@ -17,12 +17,16 @@ Audio Junkies
   Ivan Hernandez
   Kyung UK Kin
 
-Other Flunkies
+Consumes Cookies
 
   Austin Clask
-  Elijah Harmon
-  Mark Jorgeson
   
 Designer Punky
 
   Alex Stewart
+
+Voice Overs
+Jocelyn Hernandez
+Elijah Harmon
+Mark Jorgeson
+
