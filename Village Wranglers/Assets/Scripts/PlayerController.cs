@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour {
 	GameObject heldVillager;
 	VillagerController heldVillagerScript;
 	Rigidbody heldVillagerRigid;
-	GameObject heldVillagerStrength;
 	Rigidbody rb;
 
 	float xTemp, yTemp;
@@ -51,6 +50,12 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+		if(isHoldingVillager && holdLocation.childCount == 0 ){
+			heldVillager = null;
+			heldVillagerRigid = null;
+			heldVillagerScript = null;
+		}
 
 		//checkJoystickInput();
 
@@ -221,7 +226,8 @@ public class PlayerController : MonoBehaviour {
 		heldVillagerRigid.isKinematic = false;
 		heldVillager.transform.parent = null;
 		heldVillagerRigid.velocity = throwAngle * reducedThrowSpeed;
-		heldVillagerScript.setHoldState(isHoldingVillager);
+		heldVillagerScript.thrown();
+		//heldVillagerScript.setHoldState(isHoldingVillager);
 
 		heldVillager = null;
 		heldVillagerRigid = null;
