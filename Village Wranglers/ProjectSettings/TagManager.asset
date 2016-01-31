@@ -14,6 +14,8 @@ TagManager:
   - dizzy
   - sHold1
   - sHold2
+  - player1Prison
+  - player2Prison
   layers:
   - Default
   - TransparentFX

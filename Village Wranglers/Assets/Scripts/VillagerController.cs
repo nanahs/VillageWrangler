@@ -5,19 +5,25 @@ public class VillagerController : MonoBehaviour {
 
 	public float walkSpeed = 5f;
 	public Vector3 walkDirection;
+	public float walkDirMagnitude;
 
 	Rigidbody rb;
 
 	public bool isHeld = false;
 	public bool canMove = true;
+	public bool isInAir = false;
 	public bool isCaged = false;
 
 	GameObject villageSpawner;
+
+	Animator anim;
+	bool isFacingRight = true;
 
 	// Use this for initialization
 	void Start () {
 
 		rb = GetComponent<Rigidbody>();
+		anim = transform.GetChild(0).GetComponent<Animator>();
 		villageSpawner = GameObject.FindGameObjectWithTag("VillageSpawner");
 		InvokeRepeating("changeDirection", 0f, 5f);
 	
@@ -25,7 +31,22 @@ public class VillagerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
+		checkDirection();
+
+		walkDirMagnitude = walkDirection.magnitude;
+
+
+		anim.SetBool("isInAir", isInAir);
+		anim.SetBool("isHeld", isHeld);
+		anim.SetBool("canMove", canMove);
+
+		if(walkDirMagnitude > 30f){
+			anim.SetBool("isWalking", true);
+		}else{
+			anim.SetBool("isWalking", false);
+		}
+
 		if(canMove){
 			rb.velocity = walkDirection*Time.deltaTime;
 		}
@@ -40,8 +61,7 @@ public class VillagerController : MonoBehaviour {
 
 
 		if(isHeld){
-			CancelInvoke("changeDirection");
-			Debug.Log("stopped changing direction");
+			
 		}else{
 
 			float temp = rb.velocity.y;
@@ -59,11 +79,18 @@ public class VillagerController : MonoBehaviour {
 		walkDirection.y = temp;
 	}
 
+	public void thrown(){
+		setHoldState(false);
+		isInAir = true;
+	}
+
 	private void hitGround(){
-		
+
+		isInAir = false;
+
+		Invoke("villagerCanMove", 3f);
 		InvokeRepeating("changeDirection", 3f, 5f);
 		rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-		canMove = true;
 
 	}
 
@@ -72,9 +99,18 @@ public class VillagerController : MonoBehaviour {
 		isHeld = held;
 		if(isHeld){
 			canMove = false;
+			walkDirection = Vector3.zero;
+			CancelInvoke("changeDirection");
+			CancelInvoke("villagerCanMove");
+			Debug.Log("stopped changing direction");
+
 			rb.constraints = RigidbodyConstraints.FreezeRotation;
 		}
 
+	}
+
+	private void villagerCanMove(){
+		canMove = true;
 	}
 
 	void OnCollisionEnter(Collision col){
@@ -90,6 +126,23 @@ public class VillagerController : MonoBehaviour {
 		if(villageSpawner){
 			villageSpawner.GetComponent<VillagerSpawner>().villagerDied();
 		}
+			
+	}
 
+	void checkDirection(){
+		if(walkDirection.x >= 0 && !isFacingRight){
+			FlipSpriteX();
+		}else if(walkDirection.x < 0 && isFacingRight){
+			FlipSpriteX();
+		}
+	}
+
+	void FlipSpriteX(){
+		isFacingRight = !isFacingRight;
+
+		Vector3 scale = transform.localScale;
+		scale.x *= -1;
+
+		transform.localScale = scale;
 	}
 }

@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: 05276ab100aa14ba0a03a860f3658fbf
+timeCreated: 1454236211
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - source: {instanceID: 0}
+  - speedBoost: {fileID: 8300000, guid: b89130bbce4164854abc1f9c30831db0, type: 3}
+  - strength: {fileID: 8300000, guid: dfc3453255d0d485ca3d98d56a9472ff, type: 3}
+  - dizzy: {fileID: 8300000, guid: a7fae27b578cc4ae484ef1ef20a9f092, type: 3}
+  - intromusic: {fileID: 8300000, guid: a37fdccfa47c04e928df6e7010dec45f, type: 3}
+  - gamemusic: {fileID: 8300000, guid: 64c97264f78fa4586ab1514f089082e5, type: 3}
+  - endclock: {fileID: 8300000, guid: 928fba84348a54f57807002d03d83345, type: 3}
+  - pushback: {fileID: 8300000, guid: 96f105fe5a66549689eb18ea223203dc, type: 3}
+  - score: {fileID: 8300000, guid: 0adc2e738fa7742d3997ca949c24e9dd, type: 3}
+  - voicestart: {fileID: 8300000, guid: 2675135066dbb451f9a5d3a7dd2f28d8, type: 3}
+  - bear: {fileID: 8300000, guid: 7270cb0ebc0204bb3a2f3db1d29a0f66, type: 3}
+  - volcano: {fileID: 8300000, guid: b3071e68943eb401a8f0e2b8c3c930c4, type: 3}
+  - tartrap: {fileID: 8300000, guid: 624a9d867ef9149e984225d0043b0065, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

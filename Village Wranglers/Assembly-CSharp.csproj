@@ -45,6 +45,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\AudioFiles\TT_AudioAssets\AudioArrays.cs" />
+     <Compile Include="Assets\AudioFiles\TT_AudioAssets\AudioController.cs" />
      <Compile Include="Assets\CatchesVilagers\CatchVillagers.cs" />
      <Compile Include="Assets\Player\PlayerBase.cs" />
      <Compile Include="Assets\Scripts\Despawner.cs" />
