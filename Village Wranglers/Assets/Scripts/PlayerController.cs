@@ -2,9 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class PlayerController : MonoBehaviour
-{
-
+public class PlayerController : MonoBehaviour {
+	
 	public float moveSpeed = 5f;
 	public float speedBoost = 2f;
 	public float speedBoostTime = 5f;
@@ -19,8 +18,6 @@ public class PlayerController : MonoBehaviour
 	public bool isPlayerOne = true;
 	public bool isStrong = false;
 	public bool isDizzy = false;
-
-
 
 
 	GameObject heldVillager;
@@ -45,106 +42,78 @@ public class PlayerController : MonoBehaviour
 	private string randomVert = "";
 	private int randomDirection = 1;
 
-	public GameObject m_AnimationManger;
 	// Use this for initialization
-	void Start()
-	{
+	void Start () {
 
 		rb = this.GetComponent<Rigidbody>();
-		//Debug.Log(Input.GetJoystickNames()[0]);
-		m_AnimationManger = GameObject.Find("AnimationManager");
-	}
 
+	}
+	
 	// Update is called once per frame
-	void Update()
-	{
+	void Update () {
 
 		//checkJoystickInput();
+
 		/*
 		if(Input.GetKeyDown(KeyCode.Space)){
 			this.gameObject.SetActive(false);
 		}
 		*/
 
-		xMov = 0f;
+		xMov = 0f; 
 		yMov = 0f;
 		xTemp = 0f;
 		yTemp = 0f;
 
-		if (!isDizzy)
-		{
+		if(!isDizzy){
 
-			if (isPlayerOne)
-			{
+			if(isPlayerOne){
 				xTemp = Input.GetAxis("P1_Horizontal");
 				yTemp = Input.GetAxis("P1_Vertical");
-			}
-			else
-			{
+			}else{
 				xTemp = Input.GetAxis("P2_Horizontal");
 				yTemp = Input.GetAxis("P2_Vertical");
 			}
 
-		}
-		else
-		{
+		}else{
 
-			if (isPlayerOne)
-			{
+			if(isPlayerOne){
 				xTemp = Input.GetAxis("P1_Horizontal") * randomDirection;
 				yTemp = Input.GetAxis("P1_Vertical") * randomDirection;
-			}
-			else
-			{
+			}else{
 				xTemp = Input.GetAxis("P2_Horizontal") * randomDirection;
 				yTemp = Input.GetAxis("P2_Vertical") * randomDirection;
 			}
 
-			//randomMovementControls();
 		}
 
 
 
-		if (xTemp > .1 || xTemp < .1)
-		{
+		if(xTemp > .1 || xTemp < .1){
 			xMov = xTemp * Time.deltaTime * moveSpeed;
 		}
 
-
-		if (yMov > .1 || yMov < .1)
-		{
+        
+		if(yMov > .1 || yMov < .1){
 			yMov = yTemp * Time.deltaTime * moveSpeed;
 		}
-		if (xTemp > 0)
-		{
-			m_AnimationManger.transform.localEulerAngles = new Vector3(0, 180, 0);
-		}
-		else if (xTemp < 0)
-		{
-			m_AnimationManger.transform.localEulerAngles = new Vector3(0, 0, 0);
-		}
-		//cc.Move(new Vector3(xMov, 0, -yMov));
+
 		rb.velocity = new Vector3(xMov, 0, -yMov);
 
 
-		if (isHoldingVillager && canAction)
-		{
+		if(isHoldingVillager && canAction){
 
-			if (isPlayerOne)
-			{
+			if(isPlayerOne){
 
-				if (Input.GetButtonDown("P1_Pickup"))
-				{
+				if(Input.GetButtonDown("P1_Pickup")){
 
 					throwVillager(new Vector3(xMov, throwUpSpeed, -yMov));
 
 				}
 			}
-			else
-			{
-
-				if (Input.GetButtonDown("P2_Pickup"))
-				{
+			else{
+				
+				if(Input.GetButtonDown("P2_Pickup")){
 
 					throwVillager(new Vector3(xMov, throwUpSpeed, -yMov));
 
@@ -159,11 +128,9 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	void OnTriggerEnter(Collider other)
-	{
+	void OnTriggerEnter(Collider other){
 
-		if (other.tag == "speed")
-		{
+		if(other.tag == "speed"){
 
 			Destroy(other.gameObject);
 
@@ -171,8 +138,7 @@ public class PlayerController : MonoBehaviour
 			Invoke("reduceSpeed", speedBoostTime);
 		}
 
-		if (other.tag == "strength")
-		{
+		if(other.tag == "strength"){
 
 			Destroy(other.gameObject);
 
@@ -180,8 +146,7 @@ public class PlayerController : MonoBehaviour
 			Invoke("reduceStrength", strengthBoostTime);
 		}
 
-		if (other.tag == "dizzy")
-		{
+		if(other.tag == "dizzy"){
 
 			Destroy(other.gameObject);
 
@@ -193,17 +158,13 @@ public class PlayerController : MonoBehaviour
 
 	}
 
-	void OnTriggerStay(Collider other)
-	{
+	void OnTriggerStay(Collider other){
 
-		if (other.tag == "Villager" && isHoldingVillager == false && canAction)
-		{
+		if(other.tag == "Villager" && isHoldingVillager == false && canAction){
 
-			if (isPlayerOne)
-			{
+			if(isPlayerOne){
 
-				if (Input.GetButtonDown("P1_Pickup"))
-				{
+				if(Input.GetButtonDown("P1_Pickup")){
 
 					isHoldingVillager = true;
 
@@ -222,12 +183,9 @@ public class PlayerController : MonoBehaviour
 					startCooldown();
 				}
 
-			}
-			else
-			{
+			}else{
 
-				if (Input.GetButtonDown("P2_Pickup"))
-				{
+				if(Input.GetButtonDown("P2_Pickup")){
 
 					isHoldingVillager = true;
 
@@ -245,7 +203,7 @@ public class PlayerController : MonoBehaviour
 					canAction = false;
 					startCooldown();
 				}
-
+				
 			}
 
 
@@ -256,8 +214,7 @@ public class PlayerController : MonoBehaviour
 
 	}
 
-	private void throwVillager(Vector3 throwAngle)
-	{
+	private void throwVillager(Vector3 throwAngle){
 
 
 		isHoldingVillager = false;
@@ -277,19 +234,16 @@ public class PlayerController : MonoBehaviour
 
 	}
 
-	private void startCooldown()
-	{
+	private void startCooldown(){
 		canAction = false;
 		StartCoroutine("pickupCooldown");
 
 	}
 
-	IEnumerator pickupCooldown()
-	{
+	IEnumerator pickupCooldown(){
 
 		visibleCDcounter = pickupCD;
-		while (visibleCDcounter > 0)
-		{
+		while(visibleCDcounter > 0){
 			visibleCDcounter = visibleCDcounter - 1 * Time.deltaTime;
 			yield return null;
 		}
@@ -298,44 +252,34 @@ public class PlayerController : MonoBehaviour
 
 	}
 
-	private void respawnPlayer()
-	{
+	private void respawnPlayer(){
 
 		rb.velocity = Vector3.zero;
 
-		if (isPlayerOne)
-		{
+		if(isPlayerOne){
 			this.transform.position = GameObject.FindGameObjectWithTag("playerOneSpawn").transform.position;
-		}
-		else
-		{
+		}else{
 			this.transform.position = GameObject.FindGameObjectWithTag("playerTwoSpawn").transform.position;
 		}
 
 		this.gameObject.SetActive(true);
-
+		
 	}
 
-	private void reduceSpeed()
-	{
+	private void reduceSpeed(){
 		moveSpeed /= speedBoost;
 	}
-	private void reduceStrength()
-	{
+	private void reduceStrength(){
 		isStrong = false;
 	}
-	private void randomMovementControls()
-	{
+	private void randomMovementControls(){
 
 		List<string> movements = new List<string>();
 
-		if (isPlayerOne)
-		{
+		if(isPlayerOne){
 			randomHorz = playerOne;
 			randomVert = playerOne;
-		}
-		else
-		{
+		}else{
 			randomHorz = playerTwo;
 			randomVert = playerTwo;
 		}
@@ -350,74 +294,60 @@ public class PlayerController : MonoBehaviour
 		randomDirection = Random.Range(-1, 2);
 
 	}
-	private void fixMovementControls()
-	{
+	private void fixMovementControls(){
 		isDizzy = false;
 	}
 
-	public void OnDisable()
-	{
+	public void OnDisable(){
 
 		Invoke("respawnPlayer", 2f);
 
 	}
 
-	void checkJoystickInput()
-	{
+	void checkJoystickInput(){
 
 
-		if (Input.GetKeyDown("joystick 1 button 16"))
-		{
+		if(Input.GetKeyDown("joystick 1 button 16")){
 			Debug.Log("joystick 1");
 		}
 
-		if (Input.GetKeyDown("joystick 2 button 16"))
-		{
+		if(Input.GetKeyDown("joystick 2 button 16")){
 			Debug.Log("joystick 2");
 		}
 
-		if (Input.GetKeyDown("joystick 3 button 16"))
-		{
+		if(Input.GetKeyDown("joystick 3 button 16")){
 			Debug.Log("joystick 3");
 		}
 
-		if (Input.GetKeyDown("joystick 4 button 16"))
-		{
+		if(Input.GetKeyDown("joystick 4 button 16")){
 			Debug.Log("joystick 4");
 		}
 
-		if (Input.GetKeyDown("joystick 5 button 16"))
-		{
+		if(Input.GetKeyDown("joystick 5 button 16")){
 			Debug.Log("joystick 5");
 		}
 
-		if (Input.GetKeyDown("joystick 6 button 16"))
-		{
+		if(Input.GetKeyDown("joystick 6 button 16")){
 			Debug.Log("joystick 6");
 		}
 
-		if (Input.GetKeyDown("joystick 7 button 16"))
-		{
+		if(Input.GetKeyDown("joystick 7 button 16")){
 			Debug.Log("joystick 7");
 		}
 
-		if (Input.GetKeyDown("joystick 8 button 16"))
-		{
+		if(Input.GetKeyDown("joystick 8 button 16")){
 			Debug.Log("joystick 8");
 		}
 
-		if (Input.GetKeyDown("joystick 9 button 16"))
-		{
+		if(Input.GetKeyDown("joystick 9 button 16")){
 			Debug.Log("joystick 9");
 		}
 
-		if (Input.GetKeyDown("joystick 10 button 16"))
-		{
+		if(Input.GetKeyDown("joystick 10 button 16")){
 			Debug.Log("joystick 10");
 		}
 
-		if (Input.GetKeyDown("joystick 11 button 16"))
-		{
+		if(Input.GetKeyDown("joystick 11 button 16")){
 			Debug.Log("joystick 11");
 		}
 
