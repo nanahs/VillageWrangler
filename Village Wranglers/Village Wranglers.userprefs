@@ -1,9 +1,11 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/PlayerController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/powerupTrapSpawner.cs">
     <Files>
-      <File FileName="Assets/Scripts/FixAspectRatio.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/PlayerController.cs" Line="51" Column="4" />
+      <File FileName="Assets/Scripts/PlayerController.cs" Line="75" Column="20" />
+      <File FileName="Assets/Scripts/VillagerController.cs" Line="137" Column="17" />
+      <File FileName="Assets/AudioFiles/TT_AudioAssets/AudioController.cs" Line="12" Column="30" />
+      <File FileName="Assets/Scripts/powerupTrapSpawner.cs" Line="50" Column="18" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

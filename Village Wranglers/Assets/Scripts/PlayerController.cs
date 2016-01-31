@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour {
 	public float throwUpSpeed = 1f;
 	public float pickupCD = .5f;
 	public float visibleCDcounter;
+	public float trapLifeTime = 2f;
 
 	public Transform holdLocation;
 	public bool isPlayerOne = true;
@@ -27,10 +28,12 @@ public class PlayerController : MonoBehaviour {
 
 	float xTemp, yTemp;
 	float xMov, yMov;
+
 	bool isHoldingVillager = false;
+	bool isWalking = false;
+	bool hasThrown = false;
 
 	private bool canAction = true;
-
 
 	private string playerOne = "P1_";
 	private string playerTwo = "P2_";
@@ -41,11 +44,15 @@ public class PlayerController : MonoBehaviour {
 	private string randomVert = "";
 	private int randomDirection = 1;
 
+	Animator anim;
+
+	bool isFacingRight = true;
+
 	// Use this for initialization
 	void Start () {
 
 		rb = this.GetComponent<Rigidbody>();
-
+		anim = GetComponentInChildren<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -64,6 +71,19 @@ public class PlayerController : MonoBehaviour {
 			this.gameObject.SetActive(false);
 		}
 		*/
+
+		checkDirection();
+
+		if(xMov != 0 || yMov != 0){
+			isWalking = true;
+		}else{
+			isWalking = false;
+		}
+
+		anim.SetBool("isHolding", isHoldingVillager);
+		anim.SetBool("isWalking", isWalking);
+
+
 
 		xMov = 0f; 
 		yMov = 0f;
@@ -94,17 +114,22 @@ public class PlayerController : MonoBehaviour {
 
 
 
-		if(xTemp > .1 || xTemp < .1){
-			xMov = xTemp * Time.deltaTime * moveSpeed;
+		if(xTemp > .5 || xTemp < .5){
+			xMov = xTemp;
+		}else{
+			xMov = 0;
 		}
 
         
-		if(yMov > .1 || yMov < .1){
-			yMov = yTemp * Time.deltaTime * moveSpeed;
+		if(yMov > .5 || yMov < .5){
+			yMov = yTemp ;
+		}else{
+			yMov = 0;
 		}
 
-		rb.velocity = new Vector3(xMov, 0, -yMov);
 
+		rb.velocity = new Vector3(xMov, 0, -yMov).normalized * Time.deltaTime * moveSpeed;
+		//Debug.Log(rb.velocity);
 
 		if(isHoldingVillager && canAction){
 
@@ -112,7 +137,7 @@ public class PlayerController : MonoBehaviour {
 
 				if(Input.GetButtonDown("P1_Pickup")){
 
-					throwVillager(new Vector3(xMov, throwUpSpeed, -yMov));
+					throwVillager(new Vector3(rb.velocity.x, throwUpSpeed, rb.velocity.z));
 
 				}
 			}
@@ -120,7 +145,7 @@ public class PlayerController : MonoBehaviour {
 				
 				if(Input.GetButtonDown("P2_Pickup")){
 
-					throwVillager(new Vector3(xMov, throwUpSpeed, -yMov));
+					throwVillager(new Vector3(rb.velocity.x, throwUpSpeed, rb.velocity.z));
 
 				}
 			}
@@ -135,11 +160,13 @@ public class PlayerController : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other){
 
+
+		//Powerups
 		if(other.tag == "speed"){
 
 			Destroy(other.gameObject);
 
-			moveSpeed *= speedBoost;
+			increaseSpeed();
 			Invoke("reduceSpeed", speedBoostTime);
 		}
 
@@ -160,6 +187,19 @@ public class PlayerController : MonoBehaviour {
 
 			Invoke("fixMovementControls", dizzyCurseTime);
 		}
+
+
+		//Traps
+		if(other.tag == "tarPit"){
+
+			Destroy(other.gameObject);
+			Debug.Log("slow");
+
+
+			reduceSpeed();
+			Invoke("increaseSpeed", trapLifeTime);
+		}
+
 
 	}
 
@@ -221,6 +261,7 @@ public class PlayerController : MonoBehaviour {
 
 	private void throwVillager(Vector3 throwAngle){
 
+		anim.Play("Chief_Throw");
 
 		isHoldingVillager = false;
 		heldVillagerRigid.isKinematic = false;
@@ -274,6 +315,9 @@ public class PlayerController : MonoBehaviour {
 
 	private void reduceSpeed(){
 		moveSpeed /= speedBoost;
+	}
+	private void increaseSpeed(){
+		moveSpeed *= speedBoost;
 	}
 	private void reduceStrength(){
 		isStrong = false;
@@ -358,6 +402,23 @@ public class PlayerController : MonoBehaviour {
 		}
 
 
+	}
+
+	void checkDirection(){
+		if(rb.velocity.x >= 0 && !isFacingRight){
+			FlipSpriteX();
+		}else if(rb.velocity.x < 0 && isFacingRight){
+			FlipSpriteX();
+		}
+	}
+
+	void FlipSpriteX(){
+		isFacingRight = !isFacingRight;
+
+		Vector3 scale = transform.localScale;
+		scale.x *= -1;
+
+		transform.localScale = scale;
 	}
 
 }

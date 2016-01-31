@@ -16,6 +16,7 @@ TagManager:
   - sHold2
   - player1Prison
   - player2Prison
+  - tarPit
   layers:
   - Default
   - TransparentFX
@@ -28,7 +29,7 @@ TagManager:
   - Ground
   - Entities
   - PowerUp
-  - 
+  - Trap
   - 
   - 
   - 

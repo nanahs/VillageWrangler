@@ -7,6 +7,8 @@ public class VillagerController : MonoBehaviour {
 	public Vector3 walkDirection;
 	public float walkDirMagnitude;
 
+	public float groundBounce = 5f;
+
 	Rigidbody rb;
 
 	public bool isHeld = false;
@@ -97,6 +99,8 @@ public class VillagerController : MonoBehaviour {
         if (m_TrailParticle)
             m_TrailParticle.Play();
 
+		rb.AddForce(Vector3.up * groundBounce);
+
 		Invoke("villagerCanMove", 3f);
 		InvokeRepeating("changeDirection", 3f, 5f);
 		rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
@@ -111,7 +115,7 @@ public class VillagerController : MonoBehaviour {
 			walkDirection = Vector3.zero;
 			CancelInvoke("changeDirection");
 			CancelInvoke("villagerCanMove");
-			Debug.Log("stopped changing direction");
+			//Debug.Log("stopped changing direction");
 
 			rb.constraints = RigidbodyConstraints.FreezeRotation;
 		}
@@ -126,7 +130,7 @@ public class VillagerController : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col){
 
-		if(col.collider.tag == "Ground"){
+		if(col.collider.tag == "Ground" && isInAir){
 			hitGround();
 		}
 

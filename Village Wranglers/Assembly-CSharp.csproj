@@ -49,14 +49,16 @@
      <Compile Include="Assets\AudioFiles\TT_AudioAssets\AudioController.cs" />
      <Compile Include="Assets\CatchesVilagers\CatchVillagers.cs" />
      <Compile Include="Assets\Player\PlayerBase.cs" />
+     <Compile Include="Assets\Scripts\ButtonFunctions.cs" />
      <Compile Include="Assets\Scripts\Despawner.cs" />
      <Compile Include="Assets\Scripts\FixAspectRatio.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\PowerUpScript.cs" />
      <Compile Include="Assets\Scripts\TrapBehaviors.cs" />
+     <Compile Include="Assets\Scripts\TrapScript.cs" />
      <Compile Include="Assets\Scripts\VillagerController.cs" />
      <Compile Include="Assets\Scripts\VillagerSpawner.cs" />
-     <Compile Include="Assets\Scripts\powerupSpawner.cs" />
+     <Compile Include="Assets\Scripts\powerupTrapSpawner.cs" />
      <Compile Include="Assets\Timer\GameTimer.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
