@@ -714,6 +714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbbc4e5ba785012438aca473ca352cee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 1
   trap: {fileID: 1741270812}
+  player: {fileID: 1231798626}
   movespeed: 2.5
