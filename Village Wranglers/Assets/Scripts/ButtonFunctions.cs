@@ -13,7 +13,10 @@ public class ButtonFunctions : MonoBehaviour
 	{
 
 	}
-
+	public void ToGame()
+	{
+		Application.LoadLevel(4);
+	}
 	public void ToCredits()
 	{
 		Application.LoadLevel(1);

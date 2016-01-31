@@ -980,6 +980,7 @@ GameObject:
   - 33: {fileID: 3302938}
   - 65: {fileID: 6589056}
   - 23: {fileID: 2338044}
+  - 114: {fileID: 11457914}
   m_Layer: 0
   m_Name: player2PrisonCollider
   m_TagString: player2Prison
@@ -2463,6 +2464,7 @@ GameObject:
   - 33: {fileID: 3357116}
   - 65: {fileID: 6536082}
   - 23: {fileID: 2320934}
+  - 114: {fileID: 11434704}
   m_Layer: 0
   m_Name: player1PrisonCollider
   m_TagString: player1Prison
@@ -8111,7 +8113,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 132812}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 0}
 --- !u!33 &3303108
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -8671,7 +8673,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 193156}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 0}
 --- !u!33 &3357724
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -11379,6 +11381,32 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11434704
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 193156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76f959900eee0514e817af2fe717d9b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  count: {fileID: 0}
+  score: 0
+--- !u!114 &11457914
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 132812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76f959900eee0514e817af2fe717d9b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  count: {fileID: 0}
+  score: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

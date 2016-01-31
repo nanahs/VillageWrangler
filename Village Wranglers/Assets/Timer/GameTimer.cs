@@ -10,6 +10,9 @@ public class GameTimer : MonoBehaviour
 	int seconds;
 	public Text timer;
 	float colorCounter;
+	public GameObject p1score;
+	public GameObject p2score;
+
 	// Use this for initialization
 	void Start()
 	{
@@ -22,21 +25,31 @@ public class GameTimer : MonoBehaviour
 	{
 		minutes = (int)(Gametime / 60.0f);
 		seconds = (int)(Gametime % 60.0f);
-		timer.text = minutes.ToString() + ':' + seconds.ToString();
+		if (seconds < 10)
+			timer.text = minutes.ToString() + ":0" + seconds.ToString();
+		else
+			timer.text = minutes.ToString() + ':' + seconds.ToString();
 
 		// needs tuning
 		if (Gametime <= 30 && Gametime > 10)
 			timer.color = Color.red;
-		else if (Gametime <= 10 && timer.color == Color.red && colorCounter >0.4f)
+		else if (Gametime <= 10 && timer.color == Color.red && colorCounter > 0.4f)
 			timer.color = Color.black;
 		else if (Gametime <= 10 && timer.color == Color.black && colorCounter > 0.4f)
 			timer.color = Color.red;
-		else if(Gametime > 30)
+		else if (Gametime > 30)
 			timer.color = Color.black;
 
 		if (Gametime < 0)
 		{
 			// exit the game here!
+			if (p1score.GetComponent<CatchVillagers>().score == p2score.GetComponent<CatchVillagers>().score)
+				Application.LoadLevel(5);
+			else if (p1score.GetComponent<CatchVillagers>().score > p2score.GetComponent<CatchVillagers>().score)
+				Application.LoadLevel(3);
+			else
+				Application.LoadLevel(2);
+
 		}
 		if (colorCounter > 0.5f)
 			colorCounter = 0;

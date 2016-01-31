@@ -53,4 +53,9 @@ public class VillagerSpawner : MonoBehaviour {
 	public void villagerDied(){
 		numActiveVillagers--;
 	}
+
+	public void addActiveVillager()
+	{
+		numActiveVillagers++;
+	}
 }

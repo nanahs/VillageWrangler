@@ -5,7 +5,8 @@ using System.Collections;
 public class CatchVillagers : MonoBehaviour
 {
 	public GameObject count;
-	int score;
+	public int score;
+	public VillagerSpawner vs;
 	// Use this for initialization
 	void Start()
 	{
@@ -24,12 +25,16 @@ public class CatchVillagers : MonoBehaviour
 	void OnTriggerEnter(Collider col)
 	{
 		if (col.gameObject.GetComponent<VillagerController>())
+		{
 			score++;
+			vs.villagerDied();
+		}
 	}
 
 	void OnTriggerExit(Collider col)
 	{
 		if (col.gameObject.GetComponent<VillagerController>())
 			score--;
+		vs.addActiveVillager();
 	}
 }
