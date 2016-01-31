@@ -19,6 +19,9 @@ public class VillagerController : MonoBehaviour {
 	Animator anim;
 	bool isFacingRight = true;
 
+    public ParticleSystem m_DropParticle = null;
+    public ParticleSystem m_TrailParticle = null;
+
 	// Use this for initialization
 	void Start () {
 
@@ -88,6 +91,12 @@ public class VillagerController : MonoBehaviour {
 
 		isInAir = false;
 
+        if (m_DropParticle)
+        m_DropParticle.Play();
+
+        if (m_TrailParticle)
+            m_TrailParticle.Play();
+
 		Invoke("villagerCanMove", 3f);
 		InvokeRepeating("changeDirection", 3f, 5f);
 		rb.constraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
@@ -95,7 +104,7 @@ public class VillagerController : MonoBehaviour {
 	}
 
 	public void setHoldState(bool held){
-		
+     
 		isHeld = held;
 		if(isHeld){
 			canMove = false;
@@ -107,6 +116,8 @@ public class VillagerController : MonoBehaviour {
 			rb.constraints = RigidbodyConstraints.FreezeRotation;
 		}
 
+        //stop trail particle in air
+        m_TrailParticle.Stop();
 	}
 
 	private void villagerCanMove(){
