@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Player\PlayerBase.cs" />
+     <Compile Include="Assets\Scripts\Despawner.cs" />
      <Compile Include="Assets\Scripts\FixAspectRatio.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\VillagerBaseCode.cs" />
